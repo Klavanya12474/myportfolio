@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kodavati Lavanya Portfolio</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+        'Lucida Sans', Arial, sans-serif;
+    }
+    body {
+      color: #ededed;
+      background: url('https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0zODAtMDIuanBn.jpg')
+        no-repeat center center fixed;
+      background-size: cover;
+      line-height: 1.6;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 10%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 255, 255, 0.3);
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: aqua;
+      letter-spacing: 2px;
+      cursor: default;
+    }
+    .navbar a {
+      font-size: 18px;
+      color: #fff;
+      font-weight: 500;
+      margin-left: 30px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .navbar a:hover,
+    .navbar a.active {
+      color: aqua;
+    }
+    .navbar a:hover::after,
+    .navbar a.active::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: aqua;
+      bottom: -6px;
+      left: 0;
+      border-radius: 5px;
+    }
+
+    /* Sections common */
+    section {
+      padding: 120px 10% 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    h2.heading {
+      font-size: 36px;
+      font-weight: 700;
+      color: aqua;
+      margin-bottom: 40px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-prefix {
+      font-size: 22px;
+      font-weight: 600;
+      color: #00ffffcc;
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: all 0.7s ease-out;
+      user-select: none;
+    }
+    .page-prefix.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Home */
+    .home {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 140px;
+      padding-bottom: 50px;
+      color: #d3d3d3;
+    }
+    .home-content {
+      max-width: 600px;
+    }
+    .home-content h3 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .home-content h1 {
+      font-size: 56px;
+      font-weight: 900;
+      color: aqua;
+      margin-bottom: 12px;
+      cursor: default;
+      user-select: none;
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    .home-content h3 span.text {
+      color: aqua;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    .home-content p {
+      font-size: 18px;
+      color: #ccc;
+      margin-top: 18px;
+      max-width: 500px;
+      line-height: 1.5;
+    }
+    .home-sci {
+      margin-top: 35px;
+    }
+    .home-sci a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid aqua;
+      color: aqua;
+      margin-right: 18px;
+      font-size: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .home-sci a:hover {
+      background: aqua;
+      color: black;
+      box-shadow: 0 0 15px aqua;
+    }
+    .btn-box {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 28px;
+      background: aqua;
+      border-radius: 40px;
+      font-size: 16px;
+      color: black;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: box-shadow 0.4s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn-box:hover {
+      box-shadow: 0 0 10px cyan, 0 0 40px cyan, 0 0 80px cyan, 0 0 120px cyan;
+    }
+    /* Profile Image */
+    .home-image {
+      flex-shrink: 0;
+      margin-left: 60px;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border: 4px solid aqua;
+      transition: box-shadow 0.4s ease;
+      cursor: pointer;
+      margin-right: 200px;
+    }
+    .home-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      
+    }
+    .home-image:hover {
+      box-shadow: 0 0 30px aqua;
+      transform: scale(1.05);
+    }
+
+    /* About */
+    #about .about-content {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px aqua;
+      max-width: 800px;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #d3d3d3;
+      transition: transform 0.3s ease;
+      user-select: text;
+    }
+    #about .about-content:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 35px #00ffff;
+    }
+    #about .about-content .highlight {
+      color: aqua;
+      font-weight: 700;
+      text-shadow: 0 0 6px aqua;
+    }
+
+    /* Skills */
+    #skill ul.skill-list {
+      list-style-type: none;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+    #skill ul.skill-list li {
+      font-size: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-left: 5px solid aqua;
+      border-radius: 8px;
+      color: #ccc;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+    #skill ul.skill-list li:hover {
+      background-color: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px aqua;
+      color: aqua;
+    }
+
+    /* Portfolio */
+    #portfolio .portfolio-wrapper {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    #portfolio .portfolio-intro {
+      flex: 1 1 300px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px aqua;
+      color: #ccc;
+      font-size: 18px;
+      line-height: 1.5;
+      transition: transform 0.3s ease;
+      user-select: text;
+    }
+    #portfolio .portfolio-intro h3 {
+      color: aqua;
+      font-size: 28px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 8px aqua;
+      user-select: none;
+    }
+    #portfolio .portfolio-intro ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+    #portfolio .portfolio-intro ul li {
+      margin-bottom: 8px;
+    }
+    #portfolio .portfolio-intro:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ffff;
+    }
+
+    #portfolio .projects {
+      flex: 2 1 600px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    #portfolio .project {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px aqua;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      color: #ccc;
+      cursor: default;
+      user-select: none;
+    }
+    #portfolio .project:hover {
+      box-shadow: 0 0 30px #00ffff;
+      transform: translateY(-5px);
+      color: aqua;
+    }
+    #portfolio .project h3 {
+      margin-bottom: 12px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    #portfolio .project p {
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    /* Contact */
+    #mycontact form {
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 30px 35px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px aqua;
+      color: #d3d3d3;
+    }
+    #mycontact label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: aqua;
+      user-select: none;
+    }
+    #mycontact input,
+    #mycontact textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      resize: vertical;
+      outline: none;
+      transition: box-shadow 0.3s ease;
+      background: rgba(255 255 255 / 0.1);
+      color: #eee;
+    }
+    #mycontact input:focus,
+    #mycontact textarea:focus {
+      box-shadow: 0 0 10px aqua;
+      background: rgba(255 255 255 / 0.2);
+    }
+    #mycontact button {
+      background: aqua;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      color: black;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      transition: box-shadow 0.4s ease;
+      user-select: none;
+    }
+    #mycontact button:hover {
+      box-shadow: 0 0 20px cyan, 0 0 50px cyan, 0 0 100px cyan, 0 0 200px cyan;
+    }
+    #mycontact .success-message {
+      color: #0f0;
+      font-weight: 700;
+      margin-top: 10px;
+      user-select: none;
+    }
+    #mycontact .error-message {
+      color: #f33;
+      font-weight: 700;
+      margin-top: 10px;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #bbb;
+      user-select: none;
+    }
+
+    /* Animate marquee heading for page-prefix */
+    @keyframes slideInFromLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-120%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Typed text */
+    .typed-cursor {
+      font-weight: 700;
+      font-size: 22px;
+      color: aqua;
+      animation: blink 1s infinite;
+      user-select: none;
+    }
+    @keyframes blink {
+      0%,
+      50%,
+      100% {
+        opacity: 1;
+      }
+      25%,
+      75% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="#home" class="logo">portfolio</a>
+    <nav class="navbar">
+      <a href="#home" class="active">home</a>
+      <a href="#about">about</a>
+      <a href="#skill">skill</a>
+      <a href="#portfolio">projects</a>
+      <a href="#mycontact">my contact</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section class="home" id="home">
+    <div class="home-content">
+      <h3>hello i am</h3>
+      <h1>Kodavati Lavanya</h1>
+      <h3>
+        and I am good in
+        <span class="text"></span>
+      </h3>
+      <p>
+        I'm passionate about web development and love building modern,
+        responsive websites.<br />
+        Always exploring new technologies and turning ideas into interactive
+        web experiences.
+      </p>
+      <div class="home-sci">
+        <a href="#" aria-label="LinkedIn"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+        <a href="#" aria-label="WhatsApp"
+          ><i class="fa-brands fa-whatsapp"></i
+        ></a>
+      </div>
+      <a href="#about" class="btn-box">more about me</a>
+    </div>
+    <div class="home-image" title="Kodavati Lavanya">
+      <img
+        src="portfolioimage.jpg"
+        alt="Kodavati Lavanya"
+      />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="heading"
+      ><span class="page-prefix">This is</span> about page</h2
+    >
+    <div class="about-content">
+      <p>
+        I am a passionate
+        <span class="highlight">web developer</span> with a focus on creating
+        engaging and user-friendly websites. My goal is to build solutions
+        that meet real user needs.
+      </p>
+      <p>
+        I have hands-on experience in
+        <span class="highlight">HTML, CSS, JavaScript, Python</span>, and
+        <span class="highlight">database management</span>. I continuously
+        strive to improve my skills and keep up with industry trends.
+      </p>
+      <p>
+        Outside of coding, I enjoy collaborating with teams and transforming
+        ideas into real-world applications.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILL -->
+  <section id="skill">
+    <h2 class="heading"
+      ><span class="page-prefix">This is</span> skills page</h2
+    >
+    <ul class="skill-list">
+      <li>Web technologies</li>
+      <li>SQL</li>
+      <li>Python</li>
+      <li>Database Management</li>
+      <li>Basic DSA</li>
+    </ul>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2 class="heading"
+      ><span class="page-prefix">This is</span> projects page</h2
+    >
+    <div class="portfolio-wrapper">
+      <div class="portfolio-intro">
+        <h3>My Work</h3>
+        <p>
+          Below are some of my projects showcasing my skills in web
+          development, focusing on usability and responsive design.
+        </p>
+        <p>
+          I have completed two key projects:
+          <ul>
+            <li>
+              <strong>Resume Builder:</strong> A tool for creating professional
+              resumes easily.
+            </li>
+            <li>
+              <strong>College Store Locator:</strong> Helps students find
+              stores, labs, and canteens on campus.
+            </li>
+          </ul>
+        </p>
+      </div>
+      <div class="projects">
+        <div class="project">
+          <h3>Resume Builder</h3>
+          <p>
+            A web app that lets users create professional resumes quickly by
+            filling forms and downloading PDFs.
+          </p>
+        </div>
+        <div class="project">
+          <h3>College Store Locator</h3>
+          <p>
+            A website designed to help students locate stores, labs, and
+            canteens within the college campus with easy navigation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="mycontact">
+    <h2 class="heading"
+      ><span class="page-prefix">This is</span> contact page</h2
+    >
+    <form id="contactForm" novalidate>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required />
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Your Email"
+        required
+      />
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        placeholder="Your Message"
+        required
+      ></textarea>
+      <button type="submit">Send Message</button>
+      <p class="success-message" style="display:none;">Message sent successfully!</p>
+      <p class="error-message" style="display:none;">Please fill all fields correctly.</p>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Kodavati Lavanya | All rights reserved
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+  <script>
+    // Animate "This is" prefix sliding in on page load for all headings
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.page-prefix').forEach((el, idx) => {
+        setTimeout(() => {
+          el.classList.add('show');
+        }, idx * 300 + 500);
+      });
+    });
+
+    // Typed.js for "and I am good in" skills typing effect
+    var typed = new Typed('.text', {
+      strings: ['Web technologies', 'SQL', 'Python', 'Database Management'],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 2000,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|',
+    });
+
+    // Navbar active link switching on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.navbar a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 90;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Smooth scroll is native via CSS scroll-behavior: smooth
+
+    // Contact form validation and success message
+    const form = document.getElementById('contactForm');
+    const successMsg = form.querySelector('.success-message');
+    const errorMsg = form.querySelector('.error-message');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (name && emailRegex.test(email) && message) {
+        successMsg.style.display = 'block';
+        form.reset();
+      } else {
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
